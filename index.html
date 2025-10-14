@@ -1,44 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leave Management - Login</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header class="banner">
-        <div class="banner-content">
-            <h1>Leave Management</h1>
-            <p>Lorem ipsum dolor sit amet, managing workforce schedules with ease and efficiency.</p>
-        </div>
-        <img src="calendar.png" alt="Calendar Illustration" class="banner-img">
-    </header>
-
-    <main class="login-container">
-        <div class="login-box">
-            <h2>Welcome Back</h2>
-            <p class="subtitle">Please enter your credentials to access your management dashboard.</p>
-
-            <form id="loginForm">
-                <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Enter your username" required>
-
-                <label for="password">Password</label>
-                <div class="password-field">
-                    <input type="password" id="password" placeholder="Enter your password" required>
-                    <span id="togglePassword" class="eye-icon">👁️</span>
-                </div>
-
-                <button type="submit" class="btn">Log In</button>
-            </form>
-        </div>
-    </main>
-
-    <script src="script.js"></script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,6 +26,136 @@
         }
 
         body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Login Page Styles */
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .login-header {
+            background-color: #f0b98d; /* Light orange background to match the image */
+            padding: 30px 20px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .login-logo {
+            margin-bottom: 30px;
+        }
+
+        .login-logo i {
+            font-size: 3rem;
+            color: var(--primary);
+        }
+
+        .login-logo h1 {
+            margin-top: 15px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .login-form input:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: #2980b9;
+        }
+
+        .error-message {
+            display: none;
+            background-color: #ffebee;
+            color: var(--danger);
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: left;
+            border-left: 4px solid var(--danger);
+        }
+
+        .login-footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .login-footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dashboard Styles (hidden by default) */
+        #dashboard {
+            display: none;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Rest of the dashboard styles remain the same as before */
+        body.dashboard-body {
             display: flex;
             background-color: #f5f7fa;
             color: var(--dark);
@@ -452,475 +541,286 @@
                 text-align: center;
             }
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .modal-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .modal-message {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: var(--gray);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Confirmation Modal */
+        .confirmation-modal .modal-content {
+            max-width: 400px;
+        }
+
+        .confirmation-modal .modal-icon {
+            font-size: 36px;
+        }
+
+        .confirmation-modal .modal-message {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <i class="fas fa-calendar-alt"></i>
-            <h2>LeaveTrack</h2>
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-header">
+            <!-- Image added at the top half of the login page -->
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMzAwIDIwMCI+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIj4KICAgIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjBiOThkIi8+CiAgICA8ZyBmaWxsPSIjZmZmIj4KICAgICAgPHJlY3QgeD0iMTAwIiB5PSIzNSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMzAiIHJ4PSIyMCIvPgogICAgICA8cGF0aCBkPSJNMTAwIDM1aDEwMHYxMzBoLTEwMHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICAgIDxjaXJjbGUgY3g9IjEzNSIgY3k9IjQ1IiByPSI4IiBmaWxsPSIjZmY2MzQ1Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjE2NSIgY3k9IjQ1IiByPSI4IiBmaWxsPSIjZmY2MzQ1Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjE5NSIgY3k9IjQ1IiByPSI4IiBmaWxsPSIjZmY2MzQ1Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjEzNSIgY3k9Ijc1IiByPSI4IiBmaWxsPSIjZmY2MzQ1Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjE2NSIgY3k9Ijc1IiByPSI4IiBmaWxsPSIjZmY2MzQ1Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjE5NSIgY3k9Ijc1IiByPSI4IiBmaWxsPSIjZmY2MzQ1Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjEzNSIgY3k9IjEwNSIgcj0iOCIgZmlsbD0iI2ZmNjM0NSIvPgogICAgICA8Y2lyY2xlIGN4PSIxNjUiIGN5PSIxMDUiIHI9IjgiIGZpbGw9IiNmZjYzNDUiLz4KICAgICAgPGNpcmNsZSBjeD0iMTk1IiBjeT0iMTA1IiByPSI4IiBmaWxsPSIjZmY2MzQ1Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjEzNSIgY3k9IjEzNSIgcj0iOCIgZmlsbD0iI2ZmNjM0NSIvPgogICAgICA8Y2lyY2xlIGN4PSIxNjUiIGN5PSIxMzUiIHI9IjgiIGZpbGw9IiNmZjYzNDUiLz4KICAgICAgPGNpcmNsZSBjeD0iMTk1IiBjeT0iMTM1IiByPSI4IiBmaWxsPSIjZmY2MzQ1Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjEzNSIgY3k9IjE2NSIgcj0iOCIgZmlsbD0iI2ZmNjM0NSIvPgogICAgICA8Y2lyY2xlIGN4PSIxNjUiIGN5PSIxNjUiIHI9IjgiIGZpbGw9IiNmZjYzNDUiLz4KICAgICAgPGNpcmNsZSBjeD0iMTk1IiBjeT0iMTY1IiByPSI4IiBmaWxsPSIjZmY2MzQ1Ii8+CiAgICAgIDx0ZXh0IHg9IjEzMCIgeT0iNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzAwMCI+MTwvdGV4dD4KICAgICAgPHRleHQgeD0iMTYwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjMDAwIj41PC90ZXh0PgogICAgICA8dGV4dCB4PSIxOTAiIHk9IjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMwMDAiPjEzPC90ZXh0PgogICAgICA8dGV4dCB4PSIxMzAiIHk9Ijc1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMwMDAiPjEwPC90ZXh0PgogICAgICA8dGV4dCB4PSIxNjAiIHk9Ijc1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMwMDAiPjE3PC90ZXh0PgogICAgICA8dGV4dCB4PSIxOTAiIHk9Ijc1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMwMDAiPjE4PC90ZXh0PgogICAgICA8dGV4dCB4PSIxMzAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjMDAwIj4xNjwvdGV4dD4KICAgICAgPHRleHQgeD0iMTYwIiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzAwMCI+MTc8L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjE5MCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMwMDAiPjExPC90ZXh0PgogICAgICA8dGV4dCB4PSIxMzAiIHk9IjEzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjMDAwIj4yNDwvdGV4dD4KICAgICAgPHRleHQgeD0iMTYwIiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzAwMCI+MjY8L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjE5MCIgeT0iMTMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiMwMDAiPjM5PC90ZXh0PgogICAgICA8dGV4dCB4PSIxMzAiIHk9IjE2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjMDAwIj4xMjwvdGV4dD4KICAgICAgPHBhdGggZD0iTTEzNSAxNjBjLTQuMSAwLTcuOSAzLjgtNy45IDcuOWMwIDQuMSAzLjggNy45IDcuOSA3LjlzNy45LTMuOCA3LjkgLTcuOWMtMC4wMDAtNC4xLTMuOC03LjktNy45LTcuOSIgZmlsbD0iI2ZmNjM0NSIvPgogICAgICA8cGF0aCBkPSJNMTM1IDE2MGwtNiA2IDYgNiIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KICAgICAgPHBhdGggZD0iTTIwMCAxMzBjLTQuMSAwLTcuOSAzLjgtNy45IDcuOWMwIDQuMSAzLjggNy45IDcuOSA3LjlzNy45LTMuOCA3LjktNy45Yy0wLjAwLTQuMS0zLjgtNy45LTcuOS03LjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICAgIDxwYXRoIGQ9Ik0yMDAgMTMwbDYgNiAtNiA2IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgogICAgPC9nPgogICAgPGcgc3Ryb2tlPSIjZmY2MzQ1IiBzdHJva2Utd2lkdGg9IjQiPgogICAgICA8cGF0aCBkPSJNMTAwIDM1aDEwMHYxMzBoLTEwMHoiIGZpbGw9Im5vbmUiLz4KICAgICAgPHBhdGggZD0iTTEwMCAzNWgxMDB2MTMwaC0xMDB6IiBmaWxsPSJub25lIi8+CiAgICAgIDxwYXRoIGQ9Ik0xMDAgMzVoMTAwdjEzMGgtMTAweiIgZmlsbD0ibm9uZSIvPgogICAgPC9nPgo8L2c+Cjwvc3ZnPg==" alt="Leave Management" class="login-image">
+            
+            <!-- Text overlay on the image -->
+            <div style="position: absolute; top: 30px; left: 20px; color: white; text-align: left;">
+                <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 10px;">Leave Management</h2>
+                <p style="font-size: 0.9rem; opacity: 0.9; max-width: 200px;">Streamline your leave tracking process with our intuitive management system.</p>
+            </div>
         </div>
-        <ul class="sidebar-menu">
-            <li class="active"><i class="fas fa-home"></i> <span>Dashboard</span></li>
-            <li><i class="fas fa-calendar-check"></i> <span>Leave Requests</span></li>
-            <li><i class="fas fa-calendar-day"></i> <span>Pending Leaves</span></li>
-            <li><i class="fas fa-chart-pie"></i> <span>Leave Balances</span></li>
-            <li><i class="fas fa-bell"></i> <span>Notifications</span></li>
-            <li><i class="fas fa-user"></i> <span>Profile</span></li>
-            <li><i class="fas fa-cog"></i> <span>Settings</span></li>
-            <li><i class="fas fa-sign-out-alt"></i> <span>Logout</span></li>
-        </ul>
+        
+        <form id="login-form" class="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div id="error-message" class="error-message">
+                Invalid username or password. Please try again.
+            </div>
+            <button type="submit">Sign In</button>
+        </form>
+        <div class="login-footer">
+            <p>Forgot your password? <a href="#">Reset here</a></p>
+            <p>Don't have an account? <a href="#">Contact HR</a></p>
+        </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="header">
-            <h1>Leave Management Dashboard</h1>
-            <div class="user-info">
-                <div class="user-avatar">TN</div>
-                <div>
-                    <div>Thato Nthabi</div>
-                    <div style="font-size: 0.8rem; color: var(--gray);">HR Manager</div>
-                </div>
+    <!-- Dashboard (initially hidden) -->
+    <div id="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-calendar-alt"></i>
+                <h2>LeaveTrack</h2>
             </div>
+            <ul class="sidebar-menu">
+                <li class="active"><i class="fas fa-home"></i> <span>Dashboard</span></li>
+                <li><i class="fas fa-calendar-check"></i> <span>Leave Requests</span></li>
+                <li><i class="fas fa-calendar-day"></i> <span>Pending Leaves</span></li>
+                <li><i class="fas fa-chart-pie"></i> <span>Leave Balances</span></li>
+                <li><i class="fas fa-bell"></i> <span>Notifications</span></li>
+                <li><i class="fas fa-user"></i> <span>Profile</span></li>
+                <li><i class="fas fa-cog"></i> <span>Settings</span></li>
+                <li id="logout-btn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></li>
+            </ul>
         </div>
 
-        <!-- Dashboard Stats -->
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-users"></i></div>
-                <div class="stat-value">50</div>
-                <div class="stat-label">Total Employees</div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Leave Management Dashboard</h1>
+                <div class="user-info">
+                    <div class="user-avatar">TN</div>
+                    <div>
+                        <div>Thato Nthabi</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">HR Manager</div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-user-clock"></i></div>
-                <div class="stat-value">3</div>
-                <div class="stat-label">On Leave Today</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
-                <div class="stat-value">12.5/15</div>
-                <div class="stat-label">Avg. Annual Balance</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-heartbeat"></i></div>
-                <div class="stat-value">2.8/5</div>
-                <div class="stat-label">Avg. Sick Balance</div>
-            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="stats-container">
                 <div class="stat-card">
-               <div class="stat-icon"><i class="fas fa-user-clock"></i></div>
-                <div class="stat-value">23</div>
-                <div class="stat-label">Total Leave Days Per Employee</div>
-            </div>
-                  <div class="stat-card">
-              <div class="stat-icon"><i class="fas fa-users"></i></div>
-                <div class="stat-value">23</div>
-                <div class="stat-label">Annual Leave - 15</div>
-                <div class="stat-label">Sick Leave - 5</div>
-                <div class="stat-label">Family Responsibility - 3</div>
-            </div>
-        </div>
-
-        <!-- Tabs for different sections -->
-        <div class="tabs">
-            <div class="tab active" data-tab="pending-leaves">Pending Leaves</div>
-            <div class="tab" data-tab="leave-requests">Leave Requests</div>
-            <div class="tab" data-tab="leave-balances">Leave Balances</div>
-            <div class="tab" data-tab="notifications">Notifications</div>
-            <div class="tab" data-tab="profile">Profile</div>
-        </div>
-
-        <!-- Pending Leaves Tab -->
-        <div class="tab-content active" id="pending-leaves">
-            <div class="card">
-                <div class="card-header">
-                    <h3>September 2025</h3>
-                    <button class="btn-outline"><i class="fas fa-print"></i> Print</button>
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-value">50</div>
+                    <div class="stat-label">Total Employees</div>
                 </div>
-                <div class="card-body">
-                    <table class="calendar">
-                        <thead>
-                            <tr>
-                                <th>Sun</th>
-                                <th>Mon</th>
-                                <th>Tue</th>
-                                <th>Wed</th>
-                                <th>Thu</th>
-                                <th>Fri</th>
-                                <th>Sat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>10</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                            </tr>
-                            <tr>
-                                <td>14</td>
-                                <td class="leave-day">15</td>
-                                <td>16</td>
-                                <td>17</td>
-                                <td>18</td>
-                                <td>19</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td>21</td>
-                                <td>22</td>
-                                <td>23</td>
-                                <td>24</td>
-                                <td>25</td>
-                                <td>26</td>
-                                <td>27</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-clock"></i></div>
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">On Leave Today</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="stat-value">12.5/15</div>
+                    <div class="stat-label">Avg. Annual Balance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div class="stat-value">2.8/5</div>
+                    <div class="stat-label">Avg. Sick Balance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-clock"></i></div>
+                    <div class="stat-value">23</div>
+                    <div class="stat-label">Total Leave Days Per Employee</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-value">23</div>
+                    <div class="stat-label">Annual Leave - 15</div>
+                    <div class="stat-label">Sick Leave - 5</div>
+                    <div class="stat-label">Family Responsibility - 3</div>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <h3>Leave Distribution</h3>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label>Annual Leave</label>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="flex: 1; height: 10px; background-color: #e0e0e0; border-radius: 5px;">
-                                <div style="width: 70%; height: 100%; background-color: var(--secondary); border-radius: 5px;"></div>
-                            </div>
-                            <span>70%</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Sick Leave</label>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="flex: 1; height: 10px; background-color: #e0e0e0; border-radius: 5px;">
-                                <div style="width: 20%; height: 100%; background-color: var(--success); border-radius: 5px;"></div>
-                            </div>
-                            <span>20%</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Family Responsibility</label>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="flex: 1; height: 10px; background-color: #e0e0e0; border-radius: 5px;">
-                                <div style="width: 10%; height: 100%; background-color: var(--warning); border-radius: 5px;"></div>
-                            </div>
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h3>Notifications</h3>
-                </div>
-                <div class="card-body">
-                    <div class="notification unread">
-                        <div>
-                            <div>Nonsikelelo Mnguni applied for Annual Leave on 28-Aug-2025</div>
-                            <div class="notification-time">2 hours ago</div>
-                        </div>
-                        <div>
-                            <button class="btn-primary">Approve</button>
-                            <button class="btn-danger">Reject</button>
-                        </div>
-                    </div>
-                    <div class="notification">
-                        <div>
-                            <div>Reminder: HR needs to update holiday calendar</div>
-                            <div class="notification-time">Yesterday</div>
-                        </div>
-                        <div>
-                            <button class="btn-outline">View Details</button>
-                        </div>
-                    </div>
-                    <div class="notification">
-                        <div>
-                            <div>Your leave request for 15-Sep-2025 has been approved</div>
-                            <div class="notification-time">1 day ago</div>
-                        </div>
-                        <div>
-                            <button class="btn-outline">View Details</button>
-                        </div>
-                    </div>
-                    <div class="notification">
-                        <div>
-                            <div>New policy update on leave accrual, please review</div>
-                            <div class="notification-time">2 days ago</div>
-                        </div>
-                        <div>
-                            <button class="btn-outline">Review</button>
-                        </div>
-                    </div>
-                    <div class="notification">
-                        <div>
-                            <div>Team calendar updated with upcoming events</div>
-                            <div class="notification-time">1 week ago</div>
-                        </div>
-                        <div>
-                            <button class="btn-outline">View Calendar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Leave Requests Tab -->
-        <div class="tab-content" id="leave-requests">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Employee Leave Data</h3>
-                    <button class="btn-primary"><i class="fas fa-plus"></i> New Request</button>
-                </div>
-                <div class="card-body">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Employee Name</th>
-                                <th>Leave Type</th>
-                                <th>From Date</th>
-                                <th>To Date</th>
-                                <th>Days</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Nonsikelelo Mnguni</td>
-                                <td>Annual Leave</td>
-                                <td>2024-07-15</td>
-                                <td>2024-07-19</td>
-                                <td>5</td>
-                                <td><span class="status-badge status-approved">Approved</span></td>
-                                <td>
-                                    <button class="btn-outline">View Details</button>
-                                    <button class="btn-outline">Hide Feedback</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Tshidiso Pitso</td>
-                                <td>Sick Leave</td>
-                                <td>2024-08-01</td>
-                                <td>2024-08-01</td>
-                                <td>1</td>
-                                <td><span class="status-badge status-rejected">Rejected</span></td>
-                                <td>
-                                    <button class="btn-outline">View Details</button>
-                                    <button class="btn-outline">Hide Feedback</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Siweh Ngomti </td>
-                                <td>Parental Leave</td>
-                                <td>2024-09-01</td>
-                                <td>2024-09-20</td>
-                                <td>20</td>
-                                <td><span class="status-badge status-approved">Approved</span></td>
-                                <td>
-                                    <button class="btn-outline">View Details</button>
-                                    <button class="btn-outline">View Feedback</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dimpho Maganda</td>
-                                <td>Annual Leave</td>
-                                <td>2024-10-05</td>
-                                <td>2024-10-10</td>
-                                <td>6</td>
-                                <td><span class="status-badge status-pending">Pending</span></td>
-                                <td>
-                                    <button class="btn-outline">View Details</button>
-                                    <button class="btn-outline">Add Feedback</button>
-                                    <button class="btn-success">Approve</button>
-                                    <button class="btn-danger">Reject</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lesedi Tlhapane</td>
-                                <td>Unpaid Leave</td>
-                                <td>2024-11-10</td>
-                                <td>2024-11-12</td>
-                                <td>3</td>
-                                <td><span class="status-badge status-pending">Pending</span></td>
-                                <td>
-                                    <button class="btn-outline">View Details</button>
-                                    <button class="btn-outline">Add Feedback</button>
-                                    <button class="btn-success">Approve</button>
-                                    <button class="btn-danger">Reject</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Leave Balances Tab -->
-        <div class="tab-content" id="leave-balances">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Employee Leave Balances</h3>
-                    <div style="display: flex; gap: 10px;">
-                        <input type="text" placeholder="Search employees...">
-                        <button class="btn-primary"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Employee Name</th>
-                                <th>Annual Leave</th>
-                                <th>Sick Leave</th>
-                                <th>Family Responsibility</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tshidiso Pitso</td>
-                                <td>10/15</td>
-                                <td>3/5</td>
-                                <td>2/3</td>
-                            </tr>
-                            <tr>
-                                <td>Siweh Ngomti </td>
-                                <td>5/15</td>
-                                <td>1/5</td>
-                                <td>1/3</td>
-                            </tr>
-                            <tr>
-                                <td>Dimpho Maganda</td>
-                                <td>8/15</td>
-                                <td>2/5</td>
-                                <td>3/3</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Notifications Tab -->
-        <div class="tab-content" id="notifications">
-            <div class="card">
-                <div class="card-header">
-                    <h3>All Notifications</h3>
-                    <button class="btn-outline">Mark All As Read</button>
-                </div>
-                <div class="card-body">
-                    <div class="notification unread">
-                        <div>
-                            <div><strong>New Leave Request</strong></div>
-                            <div>Nonsikelelo Mnguni has applied for 5 days of Annual Leave.</div>
-                            <div class="notification-time">2 hours ago</div>
-                        </div>
-                        <div>
-                            <button class="btn-success">Approve</button>
-                            <button class="btn-danger">Reject</button>
-                        </div>
-                    </div>
-                    <div class="notification">
-                        <div>
-                            <div><strong>Leave Request Approved</strong></div>
-                            <div>Jane Smith's Sick Leave request for 2 days has been approved.</div>
-                            <div class="notification-time">Yesterday</div>
-                        </div>
-                        <div>
-                            <button class="btn-outline">View Details</button>
-                        </div>
-                    </div>
-                    <div class="notification">
-                        <div>
-                            <div><strong>Upcoming Employee Leave</strong></div>
-                            <div>Mark Johnson's Paternity Leave starts in 7 days.</div>
-                            <div class="notification-time">1 day ago</div>
-                        </div>
-                        <div>
-                            <button class="btn-outline">View Profile</button>
-                        </div>
-                    </div>
-                    <div class="notification">
-                        <div>
-                            <div><strong>Upcoming Company Holiday</strong></div>
-                            <div>Independence Day (July 4th) is next week.</div>
-                            <div class="notification-time">2 days ago</div>
-                        </div>
-                        <div>
-                            <button class="btn-outline">Add to Calendar</button>
-                        </div>
-                    </div>
-                    <div class="notification">
-                        <div>
-                            <div><strong>Urgent Leave Request</strong></div>
-                            <div>Emily White has requested Urgent Leave for 1 day.</div>
-                            <div class="notification-time">5 hours ago</div>
-                        </div>
-                        <div>
-                            <button class="btn-success">Approve</button>
-                            <button class="btn-danger">Reject</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Profile Tab -->
-        <div class="tab-content" id="profile">
-            <div class="profile-header">
-                <div class="profile-avatar">CT</div>
-                <div>
-                    <h2>Thato Nthabi </h2>
-                    <p>HR Manager</p>
-                </div>
-            </div>
-
+            <!-- Tabs for different sections -->
             <div class="tabs">
-                <div class="tab active" data-subtab="about">About</div>
-                <div class="tab" data-subtab="activity">Activity</div>
-                <div class="tab" data-subtab="performance">Performance</div>
+                <div class="tab active" data-tab="pending-leaves">Pending Leaves</div>
+                <div class="tab" data-tab="leave-requests">Leave Requests</div>
+                <div class="tab" data-tab="leave-balances">Leave Balances</div>
+                <div class="tab" data-tab="notifications">Notifications</div>
+                <div class="tab" data-tab="profile">Profile</div>
             </div>
 
-            <div class="subtab-content active" id="about">
+            <!-- Pending Leaves Tab -->
+            <div class="tab-content active" id="pending-leaves">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Overview</h3>
+                        <h3>September 2025</h3>
+                        <button class="btn-outline"><i class="fas fa-print"></i> Print</button>
                     </div>
                     <div class="card-body">
-                        <div class="profile-details">
-                            <div class="detail-group">
-                                <div class="detail-label">Employee ID</div>
-                                <div class="detail-value">10003</div>
+                        <table class="calendar">
+                            <thead>
+                                <tr>
+                                    <th>Sun</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>11</td>
+                                    <td>12</td>
+                                    <td>13</td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td class="leave-day">15</td>
+                                    <td>16</td>
+                                    <td>17</td>
+                                    <td>18</td>
+                                    <td>19</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>21</td>
+                                    <td>22</td>
+                                    <td>23</td>
+                                    <td>24</td>
+                                    <td>25</td>
+                                    <td>26</td>
+                                    <td>27</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Leave Distribution</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Annual Leave</label>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="flex: 1; height: 10px; background-color: #e0e0e0; border-radius: 5px;">
+                                    <div style="width: 70%; height: 100%; background-color: var(--secondary); border-radius: 5px;"></div>
+                                </div>
+                                <span>70%</span>
                             </div>
-                            <div class="detail-group">
-                                <div class="detail-label">Phone</div>
-                                <div class="detail-value">+27 61 234 5678</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Sick Leave</label>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="flex: 1; height: 10px; background-color: #e0e0e0; border-radius: 5px;">
+                                    <div style="width: 20%; height: 100%; background-color: var(--success); border-radius: 5px;"></div>
+                                </div>
+                                <span>20%</span>
                             </div>
-                            <div class="detail-group">
-                                <div class="detail-label">Email</div>
-                                <div class="detail-value">thatonthabi225@company.com</div>
-                            </div>
-                            <div class="detail-group">
-                                <div class="detail-label">Location</div>
-                                <div class="detail-value">Johannesburg HQ</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Family Responsibility</label>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="flex: 1; height: 10px; background-color: #e0e0e0; border-radius: 5px;">
+                                    <div style="width: 10%; height: 100%; background-color: var(--warning); border-radius: 5px;"></div>
+                                </div>
+                                <span>10%</span>
                             </div>
                         </div>
                     </div>
@@ -928,77 +828,452 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>Reporting Structure</h3>
+                        <h3>Notifications</h3>
                     </div>
                     <div class="card-body">
-                        <div class="detail-group">
-                            <div class="detail-label">Reports To</div>
-                            <div class="detail-value">Chief Operations Officer (COO)</div>
+                        <div class="notification unread">
+                            <div>
+                                <div>Sami Mnguni applied for Annual Leave on 28-Aug-2025</div>
+                                <div class="notification-time">2 hours ago</div>
+                            </div>
+                            <div>
+                                <button class="btn-primary approve-btn" data-employee="Sami Mnguni" data-leave-type="Annual Leave">Approve</button>
+                                <button class="btn-danger reject-btn" data-employee="Sami Mnguni" data-leave-type="Annual Leave">Reject</button>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div>
+                                <div>Reminder: HR needs to update holiday calendar</div>
+                                <div class="notification-time">Yesterday</div>
+                            </div>
+                            <div>
+                                <button class="btn-outline details-btn" data-notification="holiday-calendar">View Details</button>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div>
+                                <div>Your leave request for 15-Sep-2025 has been approved</div>
+                                <div class="notification-time">1 day ago</div>
+                            </div>
+                            <div>
+                                <button class="btn-outline details-btn" data-notification="approved-leave">View Details</button>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div>
+                                <div>New policy update on leave accrual, please review</div>
+                                <div class="notification-time">2 days ago</div>
+                            </div>
+                            <div>
+                                <button class="btn-outline review-btn" data-policy="leave-accrual">Review</button>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div>
+                                <div>Team calendar updated with upcoming events</div>
+                                <div class="notification-time">1 week ago</div>
+                            </div>
+                            <div>
+                                <button class="btn-outline calendar-btn">View Calendar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- Leave Requests Tab -->
+            <div class="tab-content" id="leave-requests">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Personal Details</h3>
+                        <h3>Employee Leave Data</h3>
+                        <button class="btn-primary new-request-btn"><i class="fas fa-plus"></i> New Request</button>
                     </div>
                     <div class="card-body">
-                        <div class="profile-details">
-                            <div class="detail-group">
-                                <div class="detail-label">Gender</div>
-                                <div class="detail-value">Female</div>
-                            </div>
-                            <div class="detail-group">
-                                <div class="detail-label">Date of Birth</div>
-                                <div class="detail-value">1984-11-12</div>
-                            </div>
-                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Leave Type</th>
+                                    <th>From Date</th>
+                                    <th>To Date</th>
+                                    <th>Days</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sami Mnguni</td>
+                                    <td>Annual Leave</td>
+                                    <td>2024-07-15</td>
+                                    <td>2024-07-19</td>
+                                    <td>5</td>
+                                    <td><span class="status-badge status-approved">Approved</span></td>
+                                    <td>
+                                        <button class="btn-outline details-btn" data-employee="Sami Mnguni" data-leave-type="Annual Leave">View Details</button>
+                                        <button class="btn-outline feedback-btn" data-employee="Sami Mnguni" data-action="hide">Hide Feedback</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tshidiso Pitso</td>
+                                    <td>Sick Leave</td>
+                                    <td>2024-08-01</td>
+                                    <td>2024-08-01</td>
+                                    <td>1</td>
+                                    <td><span class="status-badge status-rejected">Rejected</span></td>
+                                    <td>
+                                        <button class="btn-outline details-btn" data-employee="Tshidiso Pitso" data-leave-type="Sick Leave">View Details</button>
+                                        <button class="btn-outline feedback-btn" data-employee="Tshidiso Pitso" data-action="hide">Hide Feedback</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Siweh Ngomti </td>
+                                    <td>Parental Leave</td>
+                                    <td>2024-09-01</td>
+                                    <td>2024-09-20</td>
+                                    <td>20</td>
+                                    <td><span class="status-badge status-approved">Approved</span></td>
+                                    <td>
+                                        <button class="btn-outline details-btn" data-employee="Siweh Ngomti" data-leave-type="Parental Leave">View Details</button>
+                                        <button class="btn-outline feedback-btn" data-employee="Siweh Ngomti" data-action="view">View Feedback</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dimpho Maganda</td>
+                                    <td>Annual Leave</td>
+                                    <td>2024-10-05</td>
+                                    <td>2024-10-10</td>
+                                    <td>6</td>
+                                    <td><span class="status-badge status-pending">Pending</span></td>
+                                    <td>
+                                        <button class="btn-outline details-btn" data-employee="Dimpho Maganda" data-leave-type="Annual Leave">View Details</button>
+                                        <button class="btn-outline feedback-btn" data-employee="Dimpho Maganda" data-action="add">Add Feedback</button>
+                                        <button class="btn-success approve-btn" data-employee="Dimpho Maganda" data-leave-type="Annual Leave">Approve</button>
+                                        <button class="btn-danger reject-btn" data-employee="Dimpho Maganda" data-leave-type="Annual Leave">Reject</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Lesedi Tlhapane</td>
+                                    <td>Unpaid Leave</td>
+                                    <td>2024-11-10</td>
+                                    <td>2024-11-12</td>
+                                    <td>3</td>
+                                    <td><span class="status-badge status-pending">Pending</span></td>
+                                    <td>
+                                        <button class="btn-outline details-btn" data-employee="Lesedi Tlhapane" data-leave-type="Unpaid Leave">View Details</button>
+                                        <button class="btn-outline feedback-btn" data-employee="Lesedi Tlhapane" data-action="add">Add Feedback</button>
+                                        <button class="btn-success approve-btn" data-employee="Lesedi Tlhapane" data-leave-type="Unpaid Leave">Approve</button>
+                                        <button class="btn-danger reject-btn" data-employee="Lesedi Tlhapane" data-leave-type="Unpaid Leave">Reject</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
 
+            <!-- Leave Balances Tab -->
+            <div class="tab-content" id="leave-balances">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Employment Details</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="profile-details">
-                            <div class="detail-group">
-                                <div class="detail-label">Department</div>
-                                <div class="detail-value">Human Resources</div>
-                            </div>
-                            <div class="detail-group">
-                                <div class="detail-label">Employment Type</div>
-                                <div class="detail-value">Full-Time</div>
-                            </div>
-                            <div class="detail-group">
-                                <div class="detail-label">Joining Date</div>
-                                <div class="detail-value">2019-08-20</div>
-                            </div>
-                            <div class="detail-group">
-                                <div class="detail-label">Years of Service</div>
-                                <div class="detail-value">6 years</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Account Actions</h3>
-                    </div>
-                    <div class="card-body">
+                        <h3>Employee Leave Balances</h3>
                         <div style="display: flex; gap: 10px;">
-                            <button class="btn-primary">Edit Profile</button>
-                            <button class="btn-outline">Change Password</button>
-                            <button class="btn-danger">Deactivate Account</button>
+                            <input type="text" placeholder="Search employees...">
+                            <button class="btn-primary search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Annual Leave</th>
+                                    <th>Sick Leave</th>
+                                    <th>Family Responsibility</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tshidiso Pitso</td>
+                                    <td>10/15</td>
+                                    <td>3/5</td>
+                                    <td>2/3</td>
+                                </tr>
+                                <tr>
+                                    <td>Siweh Ngomti </td>
+                                    <td>5/15</td>
+                                    <td>1/5</td>
+                                    <td>1/3</td>
+                                </tr>
+                                <tr>
+                                    <td>Dimpho Maganda</td>
+                                    <td>8/15</td>
+                                    <td>2/5</td>
+                                    <td>3/3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Tab -->
+            <div class="tab-content" id="notifications">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>All Notifications</h3>
+                        <button class="btn-outline mark-all-btn">Mark All As Read</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="notification unread">
+                            <div>
+                                <div><strong>New Leave Request</strong></div>
+                                <div>Sami Mnguni has applied for 5 days of Annual Leave.</div>
+                                <div class="notification-time">2 hours ago</div>
+                            </div>
+                            <div>
+                                <button class="btn-success approve-btn" data-employee="Sami Mnguni" data-leave-type="Annual Leave">Approve</button>
+                                <button class="btn-danger reject-btn" data-employee="Sami Mnguni" data-leave-type="Annual Leave">Reject</button>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div>
+                                <div><strong>Leave Request Approved</strong></div>
+                                <div>Jane Smith's Sick Leave request for 2 days has been approved.</div>
+                                <div class="notification-time">Yesterday</div>
+                            </div>
+                            <div>
+                                <button class="btn-outline details-btn" data-employee="Jane Smith" data-leave-type="Sick Leave">View Details</button>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div>
+                                <div><strong>Upcoming Employee Leave</strong></div>
+                                <div>Mark Johnson's Paternity Leave starts in 7 days.</div>
+                                <div class="notification-time">1 day ago</div>
+                            </div>
+                            <div>
+                                <button class="btn-outline profile-btn" data-employee="Mark Johnson">View Profile</button>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div>
+                                <div><strong>Upcoming Company Holiday</strong></div>
+                                <div>Independence Day (July 4th) is next week.</div>
+                                <div class="notification-time">2 days ago</div>
+                            </div>
+                            <div>
+                                <button class="btn-outline calendar-btn">Add to Calendar</button>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div>
+                                <div><strong>Urgent Leave Request</strong></div>
+                                <div>Emily White has requested Urgent Leave for 1 day.</div>
+                                <div class="notification-time">5 hours ago</div>
+                            </div>
+                            <div>
+                                <button class="btn-success approve-btn" data-employee="Emily White" data-leave-type="Urgent Leave">Approve</button>
+                                <button class="btn-danger reject-btn" data-employee="Emily White" data-leave-type="Urgent Leave">Reject</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div class="tab-content" id="profile">
+                <div class="profile-header">
+                    <div class="profile-avatar">CT</div>
+                    <div>
+                        <h2>Thato Nthabi </h2>
+                        <p>HR Manager</p>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <div class="tab active" data-subtab="about">About</div>
+                    <div class="tab" data-subtab="activity">Activity</div>
+                    <div class="tab" data-subtab="performance">Performance</div>
+                </div>
+
+                <div class="subtab-content active" id="about">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Overview</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-details">
+                                <div class="detail-group">
+                                    <div class="detail-label">Employee ID</div>
+                                    <div class="detail-value">10003</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">Phone</div>
+                                    <div class="detail-value">+27 61 234 5678</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">Email</div>
+                                    <div class="detail-value">thatonthabi225@company.com</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">Location</div>
+                                    <div class="detail-value">Johannesburg HQ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Reporting Structure</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="detail-group">
+                                <div class="detail-label">Reports To</div>
+                                <div class="detail-value">Chief Operations Officer (COO)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Personal Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-details">
+                                <div class="detail-group">
+                                    <div class="detail-label">Gender</div>
+                                    <div class="detail-value">Female</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">Date of Birth</div>
+                                    <div class="detail-value">1984-11-12</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Employment Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-details">
+                                <div class="detail-group">
+                                    <div class="detail-label">Department</div>
+                                    <div class="detail-value">Human Resources</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">Employment Type</div>
+                                    <div class="detail-value">Full-Time</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">Joining Date</div>
+                                    <div class="detail-value">2019-08-20</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">Years of Service</div>
+                                    <div class="detail-value">6 years</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Account Actions</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn-primary edit-profile-btn">Edit Profile</button>
+                                <button class="btn-outline change-password-btn">Change Password</button>
+                                <button class="btn-danger deactivate-btn">Deactivate Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for displaying messages -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-icon" id="modalIcon"></div>
+            <h2 class="modal-title" id="modalTitle">Action Completed</h2>
+            <p class="modal-message" id="modalMessage">Your action has been processed successfully.</p>
+            <div class="modal-actions">
+                <button class="btn-primary" id="modalCloseBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal confirmation-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-icon" id="confirmIcon"><i class="fas fa-exclamation-triangle"></i></div>
+            <h2 class="modal-title" id="confirmTitle">Confirm Action</h2>
+            <p class="modal-message" id="confirmMessage">Are you sure you want to proceed with this action?</p>
+            <div class="modal-actions">
+                <button class="btn-outline" id="cancelBtn">Cancel</button>
+                <button class="btn-danger" id="confirmBtn">Confirm</button>
             </div>
         </div>
     </div>
 
     <script>
+        // Login functionality
+        const loginPage = document.getElementById('login-page');
+        const dashboard = document.getElementById('dashboard');
+        const loginForm = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        // Valid credentials (in a real app, this would be server-side)
+        const validCredentials = {
+            username: 'hrmanager',
+            password: 'password123'
+        };
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation (in a real app, this would be done server-side)
+            if (username === validCredentials.username && password === validCredentials.password) {
+                // Hide login page and show dashboard
+                loginPage.style.display = 'none';
+                dashboard.style.display = 'block';
+                document.body.classList.add('dashboard-body');
+            } else {
+                // Show error message
+                errorMessage.style.display = 'block';
+                
+                // Add shake animation to form
+                loginForm.classList.add('shake');
+                setTimeout(() => {
+                    loginForm.classList.remove('shake');
+                }, 500);
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function() {
+            // Hide dashboard and show login page
+            dashboard.style.display = 'none';
+            loginPage.style.display = 'block';
+            document.body.classList.remove('dashboard-body');
+            
+            // Reset form
+            loginForm.reset();
+            errorMessage.style.display = 'none';
+        });
+
         // Tab switching functionality
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
@@ -1040,20 +1315,300 @@
 
         // Sidebar menu functionality
         document.querySelectorAll('.sidebar-menu li').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.sidebar-menu li').forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                
-                // Get the text content of the clicked menu item
-                const menuText = item.querySelector('span').textContent;
-                
-                // Find the corresponding tab and activate it
-                document.querySelectorAll('.tab').forEach(tab => {
-                    if (tab.textContent.includes(menuText)) {
-                        tab.click();
-                    }
+            if (item.id !== 'logout-btn') {
+                item.addEventListener('click', () => {
+                    document.querySelectorAll('.sidebar-menu li').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Get the text content of the clicked menu item
+                    const menuText = item.querySelector('span').textContent;
+                    
+                    // Find the corresponding tab and activate it
+                    document.querySelectorAll('.tab').forEach(tab => {
+                        if (tab.textContent.includes(menuText)) {
+                            tab.click();
+                        }
+                    });
                 });
+            }
+        });
+
+        // Modal functionality
+        const messageModal = document.getElementById('messageModal');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const closeButtons = document.querySelectorAll('.close');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const confirmTitle = document.getElementById('confirmTitle');
+        const confirmMessage = document.getElementById('confirmMessage');
+
+        // Close modals
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                messageModal.style.display = 'none';
+                confirmationModal.style.display = 'none';
             });
+        });
+
+        modalCloseBtn.addEventListener('click', () => {
+            messageModal.style.display = 'none';
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            confirmationModal.style.display = 'none';
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === messageModal) {
+                messageModal.style.display = 'none';
+            }
+            if (event.target === confirmationModal) {
+                confirmationModal.style.display = 'none';
+            }
+        });
+
+        // Function to show message modal
+        function showMessage(icon, title, message) {
+            document.getElementById('modalIcon').innerHTML = icon;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            messageModal.style.display = 'block';
+        }
+
+        // Button event handlers
+        // Approve buttons
+        document.querySelectorAll('.approve-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const employee = btn.getAttribute('data-employee');
+                const leaveType = btn.getAttribute('data-leave-type');
+                
+                // Show confirmation modal
+                confirmTitle.textContent = "Approve Leave Request";
+                confirmMessage.textContent = `Are you sure you want to approve ${employee}'s ${leaveType} request?`;
+                confirmBtn.textContent = "Approve";
+                confirmBtn.className = "btn-success";
+                confirmationModal.style.display = 'block';
+                
+                // Set up confirm button action
+                confirmBtn.onclick = () => {
+                    confirmationModal.style.display = 'none';
+                    showMessage(
+                        '<i class="fas fa-check-circle" style="color: var(--success);"></i>',
+                        'Leave Approved',
+                        `${employee}'s ${leaveType} request has been approved successfully.`
+                    );
+                    
+                    // Update status in the table if applicable
+                    const row = btn.closest('tr');
+                    if (row) {
+                        const statusCell = row.querySelector('.status-badge');
+                        if (statusCell) {
+                            statusCell.className = 'status-badge status-approved';
+                            statusCell.textContent = 'Approved';
+                        }
+                    }
+                    
+                    // Mark notification as read
+                    const notification = btn.closest('.notification');
+                    if (notification) {
+                        notification.classList.remove('unread');
+                    }
+                };
+            });
+        });
+
+        // Reject buttons
+        document.querySelectorAll('.reject-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const employee = btn.getAttribute('data-employee');
+                const leaveType = btn.getAttribute('data-leave-type');
+                
+                // Show confirmation modal
+                confirmTitle.textContent = "Reject Leave Request";
+                confirmMessage.textContent = `Are you sure you want to reject ${employee}'s ${leaveType} request?`;
+                confirmBtn.textContent = "Reject";
+                confirmBtn.className = "btn-danger";
+                confirmationModal.style.display = 'block';
+                
+                // Set up confirm button action
+                confirmBtn.onclick = () => {
+                    confirmationModal.style.display = 'none';
+                    showMessage(
+                        '<i class="fas fa-times-circle" style="color: var(--danger);"></i>',
+                        'Leave Rejected',
+                        `${employee}'s ${leaveType} request has been rejected.`
+                    );
+                    
+                    // Update status in the table if applicable
+                    const row = btn.closest('tr');
+                    if (row) {
+                        const statusCell = row.querySelector('.status-badge');
+                        if (statusCell) {
+                            statusCell.className = 'status-badge status-rejected';
+                            statusCell.textContent = 'Rejected';
+                        }
+                    }
+                    
+                    // Mark notification as read
+                    const notification = btn.closest('.notification');
+                    if (notification) {
+                        notification.classList.remove('unread');
+                    }
+                };
+            });
+        });
+
+        // View Details buttons
+        document.querySelectorAll('.details-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const employee = btn.getAttribute('data-employee') || 'Employee';
+                const leaveType = btn.getAttribute('data-leave-type') || 'Leave';
+                showMessage(
+                    '<i class="fas fa-info-circle" style="color: var(--secondary);"></i>',
+                    'Leave Request Details',
+                    `Details for ${employee}'s ${leaveType} request:\n\n- Start Date: 2024-09-15\n- End Date: 2024-09-20\n- Duration: 5 days\n- Reason: Family vacation\n- Status: Pending approval`
+                );
+            });
+        });
+
+        // View Profile buttons
+        document.querySelectorAll('.profile-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const employee = btn.getAttribute('data-employee') || 'Employee';
+                showMessage(
+                    '<i class="fas fa-user" style="color: var(--primary);"></i>',
+                    `${employee}'s Profile`,
+                    `Viewing profile for ${employee}:\n\n- Department: Human Resources\n- Position: HR Manager\n- Contact: employee@company.com\n- Leave Balance: 12 days`
+                );
+            });
+        });
+
+        // View Calendar buttons
+        document.querySelectorAll('.calendar-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                showMessage(
+                    '<i class="fas fa-calendar-alt" style="color: var(--warning);"></i>',
+                    'Calendar Updated',
+                    'The event has been added to your calendar successfully.'
+                );
+            });
+        });
+
+        // Review Policy buttons
+        document.querySelectorAll('.review-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const policy = btn.getAttribute('data-policy') || 'policy';
+                showMessage(
+                    '<i class="fas fa-file-alt" style="color: var(--gray);"></i>',
+                    'Policy Review',
+                    `You are now reviewing the ${policy.replace('-', ' ')} policy.\n\nKey changes:\n- Accrual rate increased to 1.5 days per month\n- Carryover limit reduced to 5 days\n- New documentation requirements`
+                );
+            });
+        });
+
+        // Feedback buttons
+        document.querySelectorAll('.feedback-btn').forEach(btn => {
+            const action = btn.getAttribute('data-action');
+            const employee = btn.getAttribute('data-employee');
+            
+            btn.addEventListener('click', () => {
+                if (action === 'add') {
+                    showMessage(
+                        '<i class="fas fa-comment" style="color: var(--secondary);"></i>',
+                        'Add Feedback',
+                        `Adding feedback for ${employee}'s leave request. Please provide your comments below.`
+                    );
+                } else if (action === 'view') {
+                    showMessage(
+                        '<i class="fas fa-comments" style="color: var(--success);"></i>',
+                        'Feedback History',
+                        `Feedback for ${employee}:\n\n- Manager: Approved with conditions\n- HR: Verified documentation\n- Notes: Additional days may be granted upon request`
+                    );
+                } else {
+                    showMessage(
+                        '<i class="fas fa-eye-slash" style="color: var(--gray);"></i>',
+                        'Feedback Hidden',
+                        `Feedback for ${employee} is now hidden from view.`
+                    );
+                }
+            });
+        });
+
+        // New Request button
+        document.querySelector('.new-request-btn').addEventListener('click', () => {
+            showMessage(
+                '<i class="fas fa-plus-circle" style="color: var(--success);"></i>',
+                'New Leave Request',
+                'You are creating a new leave request. Please fill in the required details:\n\n- Leave type\n- Start date\n- End date\n- Reason\n- Supporting documents (if applicable)'
+            );
+        });
+
+        // Search button
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            const searchInput = document.querySelector('input[placeholder="Search employees..."]');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                showMessage(
+                    '<i class="fas fa-search" style="color: var(--secondary);"></i>',
+                    'Search Results',
+                    `Searching for employees matching "${searchTerm}".\n\nFound 3 results:\n- Tshidiso Pitso\n- Siweh Ngomti\n- Dimpho Maganda`
+                );
+            } else {
+                showMessage(
+                    '<i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i>',
+                    'Search Required',
+                    'Please enter a search term to find employees.'
+                );
+            }
+        });
+
+        // Mark All as Read button
+        document.querySelector('.mark-all-btn').addEventListener('click', () => {
+            document.querySelectorAll('.notification.unread').forEach(notification => {
+                notification.classList.remove('unread');
+            });
+            showMessage(
+                '<i class="fas fa-check-double" style="color: var(--success);"></i>',
+                'All Notifications Read',
+                'All notifications have been marked as read.'
+            );
+        });
+
+        // Profile action buttons
+        document.querySelector('.edit-profile-btn').addEventListener('click', () => {
+            showMessage(
+                '<i class="fas fa-edit" style="color: var(--secondary);"></i>',
+                'Edit Profile',
+                'You are now editing your profile information. Make changes as needed and click Save when finished.'
+            );
+        });
+
+        document.querySelector('.change-password-btn').addEventListener('click', () => {
+            showMessage(
+                '<i class="fas fa-lock" style="color: var(--warning);"></i>',
+                'Change Password',
+                'Enter your current password and a new password to update your account security.'
+            );
+        });
+
+        document.querySelector('.deactivate-btn').addEventListener('click', () => {
+            confirmTitle.textContent = "Deactivate Account";
+            confirmMessage.textContent = "Are you sure you want to deactivate your account? This action cannot be undone.";
+            confirmBtn.textContent = "Deactivate";
+            confirmBtn.className = "btn-danger";
+            confirmationModal.style.display = 'block';
+            
+            confirmBtn.onclick = () => {
+                confirmationModal.style.display = 'none';
+                showMessage(
+                    '<i class="fas fa-user-times" style="color: var(--danger);"></i>',
+                    'Account Deactivated',
+                    'Your account has been deactivated. You will be logged out shortly.'
+                );
+            };
         });
     </script>
 </body>
